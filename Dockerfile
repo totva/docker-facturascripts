@@ -7,8 +7,7 @@ RUN apt-get update && \
 	a2enmod rewrite && \
 	service apache2 restart && \
 	docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ && \
-	docker-php-ext-install bcmath gd mysqli pdo pdo_mysql pgsql zip && \
-	php-dev autoconf automake
+	docker-php-ext-install bcmath gd mysqli pdo pdo_mysql pgsql
 
 # previous line needed to compile php extensions (needed to instal xdebug)
 
@@ -25,6 +24,9 @@ VOLUME /var/www/html
 
 COPY facturascripts.sh /usr/local/bin/facturascripts
 RUN chmod +x /usr/local/bin/facturascripts
+
+# install xdebug dependencies
+RUN apt-get install -y php-dev autoconf automake
 
 # download, extract and install xdebug
 ADD http://xdebug.org/files/xdebug-2.9.8.tgz /tmp/xdebug-x.y.z.tgz
