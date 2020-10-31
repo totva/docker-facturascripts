@@ -7,7 +7,10 @@ RUN apt-get update && \
 	a2enmod rewrite && \
 	service apache2 restart && \
 	docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ && \
-	docker-php-ext-install bcmath gd mysqli pdo pdo_mysql pgsql zip
+	docker-php-ext-install bcmath gd mysqli pdo pdo_mysql pgsql zip && \
+	php-dev autoconf automake
+
+# previous line needed to compile php extensions (needed to instal xdebug)
 
 ENV FS_VERSION 2020.71
 
@@ -22,4 +25,16 @@ VOLUME /var/www/html
 
 COPY facturascripts.sh /usr/local/bin/facturascripts
 RUN chmod +x /usr/local/bin/facturascripts
+
+# download, extract and install xdebug
+ADD http://xdebug.org/files/xdebug-2.9.8.tgz
+RUN tar -xvzf xdebug-2.9.8.tgz
+RUN cd xdebug-2.9.8
+RUN phpize
+RUN ./configure
+RUN make
+RUN cp modules/xdebug.so /usr/local/lib/php/extensions/no-debug-non-zts-20190902
+RUN echo "\nzend_extension = /usr/local/lib/php/extensions/no-debug-non-zts-20190902/xdebug.so" >> /usr/local/etc/php/php.ini
+RUN /etc/init.d/apache2 restart
+
 CMD ["facturascripts"]

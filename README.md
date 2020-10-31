@@ -1,26 +1,15 @@
-# docker-facturascripts
-FacturaScripts official Docker image. More info at https://facturascripts.com/descargar/docker
+# docker-facturascripts with xdebug and phpmyadmin
 
-## Run
-```
-$ docker run -d --name facturascripts -p 80:80 facturascripts/facturascripts:latest
-```
+FacturaScripts unofficial Docker image.
+Forked from the official FacturaScripts/docker-facturascripts
 
-## Requirements
-**mysql-server** is required. You can use the MySQL official docker image:
-```
-$ docker pull mysql
-$ docker run --name mysql -e MYSQL_ROOT_PASSWORD=mypassword -d -p 3306:3306 mysql:latest
+This version:
+- adds **xdebug** to facturascripts image
+- adds **phpmyadmin** image to docker-compose stack (using port 9980)
+- uses port 8880 instead of 80 for image facturascripts
+- uses port 8306 instead of 3306 for image mysql
+- renames image names (mysql, facturascripts) to (altmysql, altfacturascripts)
+- modifies Dockerfile and docker-compose.yml to achieve the previous points
 
-```
 
-### Install FacturaScripts
-When installing FacturaScripts, remember that if you use a mysql container, the MySQL host is the IP of the machine (or the name of the container) and not localhost.
-​
-## Build your image
-You can get the source file and build your own image.
-```
-$ git clone https://github.com/FacturaScripts/docker-facturascripts.git
-$ cd docker-facturascripts
-$ docker build -t facturascripts:latest .
-```
+&nbsp;
