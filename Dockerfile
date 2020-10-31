@@ -27,9 +27,9 @@ COPY facturascripts.sh /usr/local/bin/facturascripts
 RUN chmod +x /usr/local/bin/facturascripts
 
 # download, extract and install xdebug
-ADD http://xdebug.org/files/xdebug-2.9.8.tgz
-RUN tar -xvzf xdebug-2.9.8.tgz
-RUN cd xdebug-2.9.8
+ADD http://xdebug.org/files/xdebug-2.9.8.tgz /tmp/xdebug-x.y.z.tgz
+RUN tar -xvzf /tmp/xdebug-x.y.z.tgz
+RUN cd xdebug-x.y.z
 RUN phpize
 RUN ./configure
 RUN make
