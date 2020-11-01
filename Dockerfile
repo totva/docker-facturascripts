@@ -27,6 +27,6 @@ RUN chmod +x /usr/local/bin/facturascripts
 
 # install xdebug
 RUN pecl install xdebug-2.9.8 && \
-	docker-php-ext-enable redis xdebug
+	docker-php-ext-enable xdebug
 
 CMD ["facturascripts"]
