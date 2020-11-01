@@ -25,18 +25,8 @@ VOLUME /var/www/html
 COPY facturascripts.sh /usr/local/bin/facturascripts
 RUN chmod +x /usr/local/bin/facturascripts
 
-# install xdebug dependencies
-RUN apt-get install -y php-dev autoconf automake
-
-# download, extract and install xdebug
-ADD http://xdebug.org/files/xdebug-2.9.8.tgz /tmp/xdebug-x.y.z.tgz
-RUN tar -xvzf /tmp/xdebug-x.y.z.tgz
-RUN cd xdebug-x.y.z
-RUN phpize
-RUN ./configure
-RUN make
-RUN cp modules/xdebug.so /usr/local/lib/php/extensions/no-debug-non-zts-20190902
-RUN echo "\nzend_extension = /usr/local/lib/php/extensions/no-debug-non-zts-20190902/xdebug.so" >> /usr/local/etc/php/php.ini
-RUN /etc/init.d/apache2 restart
+# install xdebug
+RUN pecl install xdebug-2.9.8 && \
+	docker-php-ext-enable redis xdebug
 
 CMD ["facturascripts"]
