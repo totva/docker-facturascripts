@@ -7,7 +7,7 @@ RUN apt-get update && \
 	a2enmod rewrite && \
 	service apache2 restart && \
 	docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ && \
-	docker-php-ext-install bcmath gd mysqli pdo pdo_mysql pgsql
+	docker-php-ext-install bcmath gd mysqli pdo pdo_mysql pgsql zip
 
 # previous line needed to compile php extensions (needed to instal xdebug)
 
