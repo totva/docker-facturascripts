@@ -1,7 +1,7 @@
 # docker-facturascripts with xdebug and phpmyadmin
 
 FacturaScripts unofficial Docker stack.
-Forked from the official FacturaScripts/docker-facturascripts
+Forked from the official https://github.com/FacturaScripts/docker-facturascripts
 
 This fork:
 - adds **xdebug** to facturascripts image
