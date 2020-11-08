@@ -37,11 +37,15 @@ xdebug.idekey=netbeans-xdebug
 
 Replace host.docker.internal with the hostname or ip of the webserver if in your case it is a different machine.
 
+Any other IDE that works with xdebug (Vscode/Vscodium, Phpstorm...) can be used instead of Netbeans, just adjust the idekey (connection identifier) in either xdebug settings or IDE settings.
+
 With this settings there is no need to start the debugging session "manually", so:
-- Disable opening the web browser in IDE. In Netbeans -> project properties -> run configuration -> advanced -> choose "Do not open web browser" for "debug url"
+- Disable opening the web browser in IDE.\
+In Netbeans -> project properties -> run configuration -> advanced -> choose "Do not open web browser" for "debug url"
 - No need to have installed the "Xdebug helper" extension (or similar extensions) in chromium based browsers, no need for any extension in any browser. You can use any (modern) browser to debug.
 
-My understanding is with every request to the webserver xdebug checks if the IDE is listening on port 9000 and then connects and start the debugging session.\ IDE will be listening only if we manually use the debug features of the IDE.\
+My understanding is with every request to the webserver xdebug checks if the IDE is listening on port 9000 and then connects and start the debugging session.\
+IDE will be listening only if we manually use the debug features of the IDE.\
 Therefore to stablish the connection the IDE is the server and xdebug is the client, so no need to open or forward port 9000 to the image (because xdebug initiates the connection).
 
 Netbeans settings:
