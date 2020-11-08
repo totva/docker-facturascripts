@@ -6,8 +6,8 @@ services:
     image: mysql:8.0
     command: --default-authentication-plugin=mysql_native_password
     restart: always
-    ports:
-      - 8306:3306
+#    ports:
+#      - 3336:3306
     environment:
       MYSQL_ROOT_PASSWORD: changeme
     volumes:
@@ -18,12 +18,16 @@ services:
     restart: always
     ports:
       - 8880:80
+# no port settings are needed here for xdebug 
+# because xdebug is the one starting the connection (the client) to the server (the IDE is listening) 
+# via port 9000 (setted in php.ini)
     volumes:
       - ./facturascripts:/var/www/html
+      - ./xdebug_php_ini/php.ini:/usr/local/etc/php/php.ini
 #    links:
 #      - mysql:mysql
     depends_on:
-      - mysql
+      - altmysql
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -34,4 +38,4 @@ services:
       - PMA_ARBITRARY=1 # display the field to enter the server to connect to
       - UPLOAD_LIMIT=300000000 # increased to 300 MB approx
     volumes:
-      - ./phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
+      - ./phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php # more tweaks

@@ -9,8 +9,6 @@ RUN apt-get update && \
 	docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ && \
 	docker-php-ext-install bcmath gd mysqli pdo pdo_mysql pgsql zip
 
-# previous line needed to compile php extensions (needed to instal xdebug)
-
 ENV FS_VERSION 2020.71
 
 # Download FacturaScripts
@@ -25,7 +23,7 @@ VOLUME /var/www/html
 COPY facturascripts.sh /usr/local/bin/facturascripts
 RUN chmod +x /usr/local/bin/facturascripts
 
-# install xdebug
+# install xdebug (this is the only modification to official facturascripts Dockerfile)
 RUN pecl install xdebug-2.9.8 && \
 	docker-php-ext-enable xdebug
 
