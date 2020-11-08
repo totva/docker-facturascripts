@@ -13,6 +13,7 @@ This version:
 - modifies Dockerfile and docker-compose.yml to achieve the previous points
 
 https://hub.docker.com/r/jstnl/facturascripts-xdebug
+The image on dockerhub (tagged "latest") is rebuilt automatically on every modification to this github repository.
 
 &nbsp;
 
@@ -51,7 +52,7 @@ Netbeans settings:
 - project properties -> run configuration -> advanced -> path mapping
 	Here we have to tell Netbeans the correspondence between location of php files in the server and in the project folder. Important: use absolute paths.\
 	Example (2 rows, first for my plugin, second for FS core):
-			
+
 	|server path|project path|
 	|---|---|
 	|/var/www/html/Plugins/MiPlugin|/home/myusername/gits/MiPlugin|
