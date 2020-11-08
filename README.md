@@ -1,11 +1,11 @@
 # docker-facturascripts with xdebug and phpmyadmin
 
-FacturaScripts unofficial Docker image.
+FacturaScripts unofficial Docker stack.
 Forked from the official FacturaScripts/docker-facturascripts
 
-This version:
+This fork:
 - adds **xdebug** to facturascripts image
-- adds **phpmyadmin** image to docker-compose stack (using port 9980)
+- adds **phpmyadmin** image (customized with practical tweaks) to docker-compose stack (using port 9980).
 - uses port 8880 instead of 80 for image facturascripts
 - uses port 8306 instead of 3306 for image mysql
 - renames image names (mysql, facturascripts) to (altmysql, altfacturascripts)
