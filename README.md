@@ -1,5 +1,7 @@
 # docker-facturascripts with xdebug and phpmyadmin
 
+![cover](./cover.png "Cover image")
+
 FacturaScripts unofficial Docker stack.\
 Forked from the official https://github.com/FacturaScripts/docker-facturascripts
 
