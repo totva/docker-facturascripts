@@ -1,6 +1,6 @@
 # docker-facturascripts with xdebug and phpmyadmin
 
-FacturaScripts unofficial Docker stack.
+FacturaScripts unofficial Docker stack.\
 Forked from the official https://github.com/FacturaScripts/docker-facturascripts
 
 This fork:
@@ -12,7 +12,7 @@ This fork:
 - gets from dockerhub my image `jstnl/facturascripts-xdebug` instead of `facturascripts/facturascripts`
 - modifies Dockerfile and docker-compose.yml to achieve the previous points
 
-https://hub.docker.com/r/jstnl/facturascripts-xdebug
+https://hub.docker.com/r/jstnl/facturascripts-xdebug \
 The image on dockerhub (tagged "latest") is rebuilt automatically on every modification to this github repository.
 
 &nbsp;
@@ -41,16 +41,18 @@ With this settings there is no need to start the debugging session "manually", s
 - Disable opening the web browser in IDE. In Netbeans -> project properties -> run configuration -> advanced -> choose "Do not open web browser" for "debug url"
 - No need to have installed the "Xdebug helper" extension (or similar extensions) in chromium based browsers, no need for any extension in any browser. You can use any (modern) browser to debug.
 
-My understanding is with every request to the webserver xdebug checks if the IDE is listening on port 9000 and then connects and start the debugging session. IDE will be listening only if we manually use the debug features of the IDE.
+My understanding is with every request to the webserver xdebug checks if the IDE is listening on port 9000 and then connects and start the debugging session.\ IDE will be listening only if we manually use the debug features of the IDE.\
+Therefore to stablish the connection the IDE is the server and xdebug is the client, so no need to open or forward port 9000 to the image (because xdebug initiates the connection).
 
 Netbeans settings:
-- menu tools -> options -> php -> debugging
-	 debugger port: 9000 (default)
-	 session id: netbeans-xdebug (default)
+- menu tools -> options -> php -> debugging\
+	 debugger port: 9000 (default)\
+	 session id: netbeans-xdebug (default)\
 	 uncheck all following checkboxes
 
-- project properties -> run configuration -> advanced -> path mapping
-	Here we have to tell Netbeans the correspondence between location of php files in the server and in the project folder. Important: use absolute paths.\
+- project properties -> run configuration -> advanced -> path mapping\
+	Here we have to tell Netbeans the correspondence between location of php files in the server and in the project folder.\
+	Important: use absolute paths.\
 	Example (2 rows, first for my plugin, second for FS core):
 
 	|server path|project path|
