@@ -10,7 +10,7 @@ This fork:
 - adds **phpmyadmin** image (customized with practical tweaks) to docker-compose stack (using port 9980).
 - uses port 8880 instead of 80 for image facturascripts
 - uses port 8306 instead of 3306 for image mysql
-- renames image names (mysql, facturascripts) to (altmysql, altfacturascripts)
+- renames images (mysql, facturascripts) to (altmysql, altfacturascripts)
 - gets from dockerhub my image `jstnl/facturascripts-xdebug` instead of `facturascripts/facturascripts`
 - modifies Dockerfile and docker-compose.yml to achieve the previous points
 
